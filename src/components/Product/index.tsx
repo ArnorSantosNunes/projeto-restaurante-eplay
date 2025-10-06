@@ -10,6 +10,7 @@ import {
   Infos
 } from './styles'
 import { ButtonLink } from '../Button/styles'
+import iconeEstrela from '../../assets/images/estrela.png'
 
 type Props = {
   title: string
@@ -31,7 +32,9 @@ const Product = ({ title, description, infos, image, estrela, id }: Props) => (
     <CardContainer>
       <TituloContainer>
         <Titulo>{title} </Titulo>
-        <Estrela>{estrela}</Estrela>
+        <Estrela>
+          {estrela} <img src={iconeEstrela} />
+        </Estrela>
       </TituloContainer>
       <Descricao>{description}</Descricao>
 

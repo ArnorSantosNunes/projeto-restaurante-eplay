@@ -19,7 +19,7 @@ const promocoes: Loja[] = [
     infos: ['Destaque da semana', 'Japonesa'],
     image: hioki,
     title: 'Hioki Sushi',
-    estrela: ''
+    estrela: '4.9'
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ const promocoes: Loja[] = [
     infos: ['Destaque da semana', '🍛 Feijoada'],
     image: feijoada,
     title: 'Feijoada',
-    estrela: ''
+    estrela: '4.6'
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const promocoes: Loja[] = [
     infos: ['Destaque da semana', '🍓 Morango do Amor'],
     image: morango,
     title: 'Morango do amor',
-    estrela: ''
+    estrela: '4.6'
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ const promocoes: Loja[] = [
     infos: ['Destaque da semana', '🍝 Lasanha'],
     image: lasanha,
     title: 'Lasanha',
-    estrela: ''
+    estrela: '4.6'
   },
   {
     id: 5,
@@ -55,7 +55,7 @@ const promocoes: Loja[] = [
     infos: ['Destaque da semana', '🍜 Macarrão'],
     image: macarrao,
     title: 'La Dolce Vita Trattoria',
-    estrela: ''
+    estrela: '4.6'
   },
   {
     id: 6,
@@ -64,7 +64,7 @@ const promocoes: Loja[] = [
     infos: ['Destaque da semana', '🥘 Estrogonofe'],
     image: estrogonofe,
     title: 'Estrogonofe de Carne',
-    estrela: ''
+    estrela: '4.6'
   }
 ]
 

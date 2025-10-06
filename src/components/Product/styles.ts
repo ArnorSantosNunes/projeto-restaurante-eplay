@@ -32,11 +32,19 @@ export const TituloContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-content: center;
+
+  img {
+    width: 21px;
+    height: 20px;
+  }
 `
-export const Estrela = styled.p`
+export const Estrela = styled.div`
   color: ${cores.vermelhoRosado};
   font-weight: bold;
   font-size: 18px;
+  display: flex;
+  gap: 8px;
+  align-content: center;
 `
 
 export const Descricao = styled.p`
