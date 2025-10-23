@@ -1,5 +1,3 @@
-import Tag from '../Tag'
-
 import {
   Card,
   Descricao,
@@ -7,36 +5,45 @@ import {
   CardContainer,
   TituloContainer,
   Estrela,
-  Infos
+  ContainerTag
 } from './styles'
 import { ButtonLink } from '../Button/styles'
 import iconeEstrela from '../../assets/images/estrela.png'
+import Tag from '../Tag'
 
 type Props = {
-  title: string
-  description: string
-  infos: string[]
-  image: string
-  estrela: string
   id: number
+  titulo: string
+  destacado?: boolean
+  tipo: string
+  avaliacao: string
+  descricao: string
+  caparestaurantes: string
 }
 
-const Product = ({ title, description, infos, image, estrela, id }: Props) => (
+const Product = ({
+  id,
+  titulo,
+  destacado,
+  tipo,
+  avaliacao,
+  descricao,
+  caparestaurantes
+}: Props) => (
   <Card>
-    <img src={image} alt={title} />
-    <Infos>
-      {infos.map((info) => (
-        <Tag key={info}>{info}</Tag>
-      ))}
-    </Infos>
+    <img src={caparestaurantes} alt={titulo} />
+    <ContainerTag>
+      {destacado && <Tag size="big">Destaque da semana</Tag>}
+      <Tag>{tipo}</Tag>
+    </ContainerTag>
     <CardContainer>
       <TituloContainer>
-        <Titulo>{title} </Titulo>
+        <Titulo>{titulo} </Titulo>
         <Estrela>
-          {estrela} <img src={iconeEstrela} />
+          {avaliacao} <img src={iconeEstrela} />
         </Estrela>
       </TituloContainer>
-      <Descricao>{description}</Descricao>
+      <Descricao>{descricao}</Descricao>
 
       <ButtonLink
         to={`/restaurante/${id}`}

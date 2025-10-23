@@ -6,6 +6,14 @@ export const Card = styled.div`
   margin-top: 80px;
   background-color: ${cores.branca};
   position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* ✅ suaviza o efeito */
+
+  /* 🟢 Efeito de zoom quando passa o mouse */
+  &:hover {
+    transform: scale(1.05); /* aumenta 5% */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); /* adiciona uma sombra */
+    cursor: pointer; /* mostra o ponteiro de clique */
+  }
 
   img {
     max-width: 472px;
@@ -56,8 +64,12 @@ export const Descricao = styled.p`
   margin-bottom: 16px;
 `
 
-export const Infos = styled.div`
+export const ContainerTag = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
   position: absolute;
   top: 16px;
   right: 16px;
+  z-index: 1;
 `

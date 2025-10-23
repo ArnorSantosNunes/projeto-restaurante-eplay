@@ -13,6 +13,15 @@ export const Section = styled.section`
 
   h1 {
     line-height: 0;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* ✅ suaviza o efeito */
+
+    /* 🟢 Efeito de zoom quando passa o mouse */
+    &:hover {
+      transform: scale(1.05); /* aumenta 5% */
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); /* adiciona uma sombra */
+      cursor: pointer; /* mostra o ponteiro de clique */
+    }
   }
 
   a,

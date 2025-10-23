@@ -14,6 +14,13 @@ export const HeaderLogo = styled.div`
     width: 125px;
     display: block;
     margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* ✅ suaviza o efeito */
+
+    &:hover {
+      transform: scale(1.05); /* aumenta 5% */
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); /* adiciona uma sombra */
+      cursor: pointer; /* mostra o ponteiro de clique */
+    }
   }
   h1 {
     color: ${cores.vermelhoRosado};

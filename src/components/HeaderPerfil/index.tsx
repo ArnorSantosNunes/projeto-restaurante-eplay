@@ -18,7 +18,7 @@ const HeaderPerfil = () => {
               <img src={logo} alt="" />
             </h1>
           </Link>
-          <span role="button">produto(s) no carrinho</span>
+          <span role="button">0 produto(s) no carrinho</span>
         </Container>
       </S.Section>
     </header>
