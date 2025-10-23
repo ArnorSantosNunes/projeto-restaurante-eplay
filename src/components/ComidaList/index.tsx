@@ -39,7 +39,7 @@ export const ComidaList = ({ pratos }: Props) => {
             key={prato.id}
             id={prato.id}
             foto={prato.foto}
-            name={prato.name}
+            nome={prato.nome}
             descricao={prato.descricao}
             preco={prato.preco}
             porcao={prato.porcao}
@@ -53,10 +53,10 @@ export const ComidaList = ({ pratos }: Props) => {
           <ModalContent className="header-container">
             <Close src={fechar} alt="Fechar" onClick={fecharModal} />
             <ImgProduto>
-              <img src={pratoSelecionado.foto} alt={pratoSelecionado.name} />
+              <img src={pratoSelecionado.foto} alt={pratoSelecionado.nome} />
             </ImgProduto>
             <InforContent>
-              <h4>{pratoSelecionado.name}</h4>
+              <h4>{pratoSelecionado.nome}</h4>
               <p>{pratoSelecionado.descricao}</p>
               <p>
                 Serve: <Porcao>{pratoSelecionado.porcao}</Porcao>

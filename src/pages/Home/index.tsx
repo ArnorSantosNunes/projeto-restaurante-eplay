@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 // https://ebac-fake-api.vercel.app/api/efood/restaurantes
 export type Prato = {
   id: number
-  name: string
+  nome: string
   descricao: string
   foto: string
   preco: string

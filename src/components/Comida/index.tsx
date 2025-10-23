@@ -3,7 +3,7 @@ import Button from '../Button'
 
 type Props = {
   id: number
-  name: string
+  nome: string
   descricao: string
   foto: string
   preco: string
@@ -11,7 +11,7 @@ type Props = {
   onClick: () => void
 }
 
-export const Comida = ({ name, descricao, foto, onClick }: Props) => {
+export const Comida = ({ nome, descricao, foto, onClick }: Props) => {
   const getDescricao = (descricao: string) => {
     if (descricao.length > 150) {
       return descricao.slice(0, 150) + '...'
@@ -20,8 +20,8 @@ export const Comida = ({ name, descricao, foto, onClick }: Props) => {
   }
   return (
     <ConteudoListaComida>
-      <img src={foto} alt={name} />
-      <Titulo>{name}</Titulo>
+      <img src={foto} alt={nome} />
+      <Titulo>{nome}</Titulo>
       <Descricao>{getDescricao(descricao)}</Descricao>
       <Button
         type="button"
