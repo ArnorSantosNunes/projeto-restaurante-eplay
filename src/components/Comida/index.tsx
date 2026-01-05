@@ -6,18 +6,16 @@ type Props = {
   nome: string
   descricao: string
   foto: string
-  preco: string
+  preco: number
   porcao: string
   onClick: () => void
 }
 
 export const Comida = ({ nome, descricao, foto, onClick }: Props) => {
   const getDescricao = (descricao: string) => {
-    if (descricao.length > 150) {
-      return descricao.slice(0, 150) + '...'
-    }
-    return descricao
+    return descricao.length > 150 ? descricao.slice(0, 150) + '...' : descricao
   }
+
   return (
     <ConteudoListaComida>
       <img src={foto} alt={nome} />
@@ -26,7 +24,7 @@ export const Comida = ({ nome, descricao, foto, onClick }: Props) => {
       <Button
         type="button"
         title="Clique aqui e veja detalhes"
-        onClick={onClick} // abre o modal
+        onClick={onClick}
       >
         Mais Detalhes
       </Button>

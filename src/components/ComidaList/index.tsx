@@ -12,17 +12,26 @@ import {
 import { ButtonLink } from '../Button/styles'
 import Comida from '../Comida'
 import { Prato } from '../../pages/Home'
+import { useDispatch } from 'react-redux'
+
+import { add, open } from '../../store/reducers/cart'
 
 type Props = {
   pratos: Prato[]
+  restauranteId: number
 }
 
-export const ComidaList = ({ pratos }: Props) => {
+export const ComidaList = ({ pratos, restauranteId }: Props) => {
   const [modalEstaAberto, setModalEstaAberto] = useState(false)
   const [pratoSelecionado, setPratoSelecionado] = useState<Prato | null>(null)
 
+  const dispatch = useDispatch()
+
   const abrirModal = (prato: Prato) => {
-    setPratoSelecionado(prato)
+    setPratoSelecionado({
+      ...prato,
+      restauranteId // 🔥 AQUI ESTÁ A CORREÇÃO
+    })
     setModalEstaAberto(true)
   }
 
@@ -31,19 +40,27 @@ export const ComidaList = ({ pratos }: Props) => {
     setPratoSelecionado(null)
   }
 
+  const addToCart = () => {
+    if (!pratoSelecionado) return
+
+    dispatch(add(pratoSelecionado))
+    fecharModal()
+    dispatch(open())
+  }
+
   return (
     <>
       <ContainerListaComida className="header-container">
         {pratos.map((prato) => (
           <Comida
-            key={prato.id}
+            key={`${restauranteId}-${prato.id}`} // 🔥 chave única
             id={prato.id}
             foto={prato.foto}
             nome={prato.nome}
             descricao={prato.descricao}
             preco={prato.preco}
             porcao={prato.porcao}
-            onClick={() => abrirModal(prato)} // passa o prato para o modal
+            onClick={() => abrirModal(prato)}
           />
         ))}
       </ContainerListaComida>
@@ -61,8 +78,8 @@ export const ComidaList = ({ pratos }: Props) => {
               <p>
                 Serve: <Porcao>{pratoSelecionado.porcao}</Porcao>
               </p>
-              <ButtonLink to="/" type="link">
-                Adicionar ao carrinho - R$ {pratoSelecionado.preco}
+              <ButtonLink to="/" type="link" onClick={addToCart}>
+                Adicionar ao carrinho – R$ {pratoSelecionado.preco}
               </ButtonLink>
             </InforContent>
           </ModalContent>

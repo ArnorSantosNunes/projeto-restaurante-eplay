@@ -1,19 +1,18 @@
 import Header from '../../components/Header'
 import ProductsList from '../../components/ProductsList'
 import { Rodape } from '../../components/Rodape'
-import { useEffect, useState } from 'react'
+import { useGetRestaurantesQuery } from '../../services/api' // ✅ import do RTK Query
 
-// https://ebac-fake-api.vercel.app/api/efood/restaurantes
 export type Prato = {
   id: number
+  restauranteId: number
   nome: string
   descricao: string
   foto: string
-  preco: string
+  preco: number
   porcao: string
 }
 
-// Tipo para a loja
 export type Loja = {
   id: number
   titulo: string
@@ -22,17 +21,19 @@ export type Loja = {
   avaliacao: string
   descricao: string
   capa: string
-  cardapio: Prato[] // agora é um array de Prato
+  cardapio: Prato[]
 }
 
 const Home = () => {
-  const [lojas, setLojas] = useState<Loja[]>([])
+  const { data: lojas = [], isLoading, isError } = useGetRestaurantesQuery()
 
-  useEffect(() => {
-    fetch('https://api-ebac.vercel.app/api/efood/restaurantes')
-      .then((res) => res.json())
-      .then((res) => setLojas(res))
-  }, [])
+  if (isLoading) {
+    return <p>Carregando restaurantes...</p>
+  }
+
+  if (isError) {
+    return <p>Erro ao carregar restaurantes 😢</p>
+  }
 
   return (
     <>

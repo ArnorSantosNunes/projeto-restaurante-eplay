@@ -46,7 +46,7 @@ const Product = ({
       <Descricao>{descricao}</Descricao>
 
       <ButtonLink
-        to={`/restaurante/${id}`}
+        to={`/lojas/${id}`}
         type="link"
         title="Clique aqui e conheca a loja"
       >
