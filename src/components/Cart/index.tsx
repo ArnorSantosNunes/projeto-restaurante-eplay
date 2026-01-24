@@ -2,23 +2,29 @@ import Button from '../Button'
 import { CartContainer, Overlay, Sidebar, Prices, CartItem } from './styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
-import { close, remove } from '../../store/reducers/cart'
+import { remove } from '../../store/reducers/cart'
 import { parseToBrl } from '../../utils'
+import { open as openCheckout } from '../../store/reducers/checkout'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
   const dispatch = useDispatch()
 
   const closeCart = () => {
-    dispatch(close())
+    dispatch({ type: 'cart/close' })
   }
 
-  // ✅ CORREÇÃO AQUI
+  const handleGoToCheckout = () => {
+    if (items.length > 0) {
+      // 🔹 Abre o checkout e mantém o carrinho aberto visualmente
+      dispatch(openCheckout())
+    }
+  }
+
   const getTotalPrice = () => {
     return items.reduce((total, item) => total + item.preco, 0)
   }
 
-  // ✅ REMOÇÃO CORRETA (id + restauranteId)
   const removeItem = (id: number, restauranteId: number) => {
     dispatch(remove({ id, restauranteId }))
   }
@@ -48,7 +54,11 @@ const Cart = () => {
           <span>{parseToBrl(getTotalPrice())}</span>
         </Prices>
 
-        <Button title="Clique aqui para continuar com a compra" type="button">
+        <Button
+          title="Clique aqui para continuar com a compra"
+          type="button"
+          onClick={handleGoToCheckout}
+        >
           Continuar com a compra
         </Button>
       </Sidebar>

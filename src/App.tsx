@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Japonesa from './pages/Japonesa'
 import { store } from './store'
 import Cart from './components/Cart'
+import Checkout from './components/Checkout'
 
 const Rotas = () => (
   <Routes>
@@ -22,6 +23,7 @@ function App() {
         <div className=".header-container"></div>
         <Rotas />
         <Cart />
+        <Checkout />
       </BrowserRouter>
     </Provider>
   )

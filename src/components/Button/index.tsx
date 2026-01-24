@@ -2,27 +2,35 @@ import { ReactNode } from 'react'
 import { ButtonContainer, ButtonLink } from './styles'
 
 type Props = {
-  type: 'button' | 'link'
+  type: 'button' | 'submit' | 'link'
   title: string
   to?: string
   onClick?: () => void
   children: ReactNode
+  disabled?: boolean
 }
 
 const Button = ({ type, title, to, onClick, children }: Props) => {
-  if (type === 'button') {
+  if (type === 'link') {
     return (
-      <ButtonContainer type="button" title={title} onClick={onClick}>
+      <ButtonLink to={to as string} title={title}>
         {children}
-      </ButtonContainer>
+      </ButtonLink>
     )
   }
 
   return (
-    <ButtonLink to={to as string} as="a" title={title}>
+    <ButtonContainer
+      type={type} // 🔥 ESSENCIAL
+      title={title}
+      onClick={onClick}
+    >
       {children}
-    </ButtonLink>
+    </ButtonContainer>
   )
 }
 
 export default Button
+// Formulário envia → submit
+// Navega → link
+// Ação → button

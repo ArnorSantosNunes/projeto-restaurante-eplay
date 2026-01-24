@@ -6,7 +6,6 @@ type CartState = {
   isOpen: boolean
 }
 
-// 👉 payload correto para remover
 type RemovePayload = {
   id: number
   restauranteId: number
@@ -34,8 +33,6 @@ const cartSlice = createSlice({
         alert('Este prato já está no carrinho!')
       }
     },
-
-    // ✅ REMOÇÃO CORRETA (id + restauranteId)
     remove: (state, action: PayloadAction<RemovePayload>) => {
       state.items = state.items.filter(
         (item) =>
@@ -45,16 +42,22 @@ const cartSlice = createSlice({
           )
       )
     },
-
     open: (state) => {
       state.isOpen = true
     },
-
     close: (state) => {
       state.isOpen = false
+    },
+    // 🔹 Adicionado para limpar o carrinho após a compra
+    clear: (state) => {
+      state.items = []
     }
   }
 })
 
-export const { add, open, close, remove } = cartSlice.actions
+export const selectCartTotal = (state: { cart: CartState }) =>
+  state.cart.items.reduce((total, item) => total + item.preco, 0)
+
+// ✅ Adicionado 'clear' no export
+export const { add, open, close, remove, clear } = cartSlice.actions
 export default cartSlice.reducer

@@ -6,6 +6,7 @@ import { Rodape } from '../../components/Rodape'
 
 // Importamos apenas o hook que você definiu na sua API
 import { useGetRestauranteIdQuery } from '../../services/api'
+import Checkout from '../../components/Checkout'
 
 const Japonesa = () => {
   // 1. Obtemos o ID da URL
@@ -41,6 +42,7 @@ const Japonesa = () => {
         restauranteId={restaurante.id}
       />
       <Rodape />
+      <Checkout />
     </>
   )
 }

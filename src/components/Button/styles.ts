@@ -7,8 +7,9 @@ export const ButtonContainer = styled.button`
   color: ${cores.begePessego};
   font-size: 14px;
   font-weight: bold;
-  padding: 4px 8px;
+  padding: 8px 12px;
   border: none;
+  cursor: pointer;
 `
 
 export const ButtonLink = styled(Link)`
@@ -16,6 +17,7 @@ export const ButtonLink = styled(Link)`
   color: ${cores.begePessego};
   font-size: 14px;
   font-weight: bold;
-  padding: 4px 8px;
+  padding: 8px 12px;
   text-decoration: none;
+  display: inline-block;
 `
