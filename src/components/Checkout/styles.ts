@@ -42,7 +42,8 @@ export const Sidebar = styled.aside`
   z-index: 1;
   padding-top: 40px;
   padding: 8px;
-  h2 {
+  h2,
+  h3 {
     font-size: 16px;
     margin-top: 16px;
     color: ${cores.begePessego};
@@ -133,4 +134,8 @@ export const ContainerCepNumero = styled.div<
 
 export const DivCepNumero = styled.div<MaxWidthDivCepNumero>`
   max-width: ${(props) => props.maxWidth || 'auto'};
+`
+
+export const Paragrafobottom = styled.p<InputEspacobottomFrom>`
+  margin-bottom: ${(props) => props.marginBottom || '0'};
 `

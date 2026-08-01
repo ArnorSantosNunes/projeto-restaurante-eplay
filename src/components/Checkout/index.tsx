@@ -23,7 +23,8 @@ import {
   Sidebar,
   ContainerCepNumero,
   FormContainer,
-  DivCepNumero
+  DivCepNumero,
+  Paragrafobottom
 } from './styles'
 
 const Checkout = () => {
@@ -44,8 +45,6 @@ const Checkout = () => {
       cep: '',
       numero: '',
       complemento: '',
-      email: '',
-      cpf: '',
       nomeDoCartao: '',
       numeroDoCartao: '',
       cvv: '',
@@ -60,8 +59,6 @@ const Checkout = () => {
       cidade: Yup.string().min(3, 'Cidade inválida').required('Obrigatório'),
       cep: Yup.string().min(8, 'CEP inválido').required('Obrigatório'),
       numero: Yup.string().required('Obrigatório'),
-      email: Yup.string().email('E-mail inválido').required('Obrigatório'),
-      cpf: Yup.string().min(11, 'CPF inválido').required('Obrigatório'),
       nomeDoCartao: Yup.string()
         .min(5, 'Nome inválido')
         .required('Obrigatório'),
@@ -112,8 +109,15 @@ const Checkout = () => {
   const handleCloseCheckout = () => {
     dispatch(closeCheckoutAction())
     if (data) {
-      dispatch(clearCartAction()) // Limpa o carrinho após sucesso
+      dispatch(clearCartAction())
     }
+  }
+
+  // ✅ FUNÇÃO ADICIONADA (reload tipo F5)
+  const handleFinishAndReload = () => {
+    dispatch(closeCheckoutAction())
+    dispatch(clearCartAction())
+    window.location.reload()
   }
 
   const handleBackToCart = () => {
@@ -147,21 +151,20 @@ const Checkout = () => {
         <Overlay onClick={handleCloseCheckout} />
         <Sidebar>
           {data ? (
-            /* TELA DE SUCESSO */
             <div className="success-container">
               <h3>Pedido realizado - {data.orderId}</h3>
-              <p>
+              <Paragrafobottom>
                 Seu pedido está sendo preparado com carinho e logo chegará até
                 você!
-              </p>
-              <p>
+              </Paragrafobottom>
+              <Paragrafobottom marginBottom="24px">
                 Esperamos que desfrute de uma deliciosa experiência
                 gastronômica. Bom apetite!
-              </p>
+              </Paragrafobottom>
               <Button
                 title="Concluir"
                 type="button"
-                onClick={handleCloseCheckout}
+                onClick={handleFinishAndReload}
               >
                 Concluir
               </Button>
@@ -169,9 +172,9 @@ const Checkout = () => {
           ) : (
             <>
               {payWithCard ? (
-                /* ETAPA 1: ENTREGA */
                 <>
                   <h2>Entrega</h2>
+
                   <FormContainer>
                     <label>Quem irá receber</label>
                     <input {...form.getFieldProps('fullName')} />
@@ -179,6 +182,7 @@ const Checkout = () => {
                       {getErrorMessage('fullName', form.errors.fullName)}
                     </small>
                   </FormContainer>
+
                   <FormContainer>
                     <label>Endereço</label>
                     <input {...form.getFieldProps('endereco')} />
@@ -186,6 +190,7 @@ const Checkout = () => {
                       {getErrorMessage('endereco', form.errors.endereco)}
                     </small>
                   </FormContainer>
+
                   <FormContainer>
                     <label>Cidade</label>
                     <input {...form.getFieldProps('cidade')} />
@@ -193,12 +198,14 @@ const Checkout = () => {
                       {getErrorMessage('cidade', form.errors.cidade)}
                     </small>
                   </FormContainer>
+
                   <ContainerCepNumero>
                     <DivCepNumero>
                       <label>CEP</label>
                       <input {...form.getFieldProps('cep')} />
                       <small>{getErrorMessage('cep', form.errors.cep)}</small>
                     </DivCepNumero>
+
                     <DivCepNumero>
                       <label>Número</label>
                       <input {...form.getFieldProps('numero')} />
@@ -207,10 +214,12 @@ const Checkout = () => {
                       </small>
                     </DivCepNumero>
                   </ContainerCepNumero>
+
                   <FormContainer marginBottom="24px">
                     <label>Complemento</label>
                     <input {...form.getFieldProps('complemento')} />
                   </FormContainer>
+
                   <Button
                     title="Continuar"
                     type="button"
@@ -218,6 +227,7 @@ const Checkout = () => {
                   >
                     Continuar com o pagamento
                   </Button>
+
                   <Button
                     title="Voltar"
                     type="button"
@@ -227,11 +237,11 @@ const Checkout = () => {
                   </Button>
                 </>
               ) : (
-                /* ETAPA 2: PAGAMENTO */
                 <>
                   <Prices>
                     <h4>Pagamento - Valor a pagar {parseToBrl(total)}</h4>
                   </Prices>
+
                   {isError && (
                     <p style={{ color: 'red', marginBottom: '8px' }}>
                       Erro ao processar pedido. Tente novamente.
@@ -242,27 +252,33 @@ const Checkout = () => {
                     <label>Nome no cartão</label>
                     <input {...form.getFieldProps('nomeDoCartao')} />
                   </FormContainer>
+
                   <FormContainer>
                     <label>Número do cartão</label>
                     <input {...form.getFieldProps('numeroDoCartao')} />
                   </FormContainer>
+
                   <ContainerCepNumero>
                     <DivCepNumero>
                       <label>CVV</label>
                       <input {...form.getFieldProps('cvv')} />
                     </DivCepNumero>
+
                     <DivCepNumero>
                       <label>Mês</label>
                       <input {...form.getFieldProps('mesVencimento')} />
                     </DivCepNumero>
                   </ContainerCepNumero>
+
                   <FormContainer marginBottom="24px">
                     <label>Ano</label>
                     <input {...form.getFieldProps('anoVencimento')} />
                   </FormContainer>
+
                   <Button title="Finalizar" type="submit" disabled={isLoading}>
                     {isLoading ? 'Processando...' : 'Finalizar pagamento'}
                   </Button>
+
                   <Button
                     title="Voltar"
                     type="button"
