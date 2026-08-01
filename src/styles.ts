@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 
 export const cores = {
   branca: '#FFFFFF',
@@ -7,6 +7,7 @@ export const cores = {
   begePessego: '#FFEBD9',
   amarelo: '#FFB930'
 }
+
 export const GlobalCss = createGlobalStyle`
   * {
     margin: 0;
@@ -19,9 +20,9 @@ export const GlobalCss = createGlobalStyle`
     background-color: ${cores.bege}
   }
 
-    .header-container {
+  .header-container {
     max-width: 1024px;
     width: 100%;
     margin: 0 auto;
-    }
+  }
 `
